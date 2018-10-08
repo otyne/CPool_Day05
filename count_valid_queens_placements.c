@@ -26,10 +26,16 @@ static int board_different(int *chess, int nb)
 
 static int left_to_right(int *chess, int nb)
 {
-    for (int i = 0; i != nb; i++) {
-        for (int k = i + 1; k != nb; k++) {
-            if (i + chess[k] == k + chess[i])
-                return (0);
+    int i = 0;
+    int k = i + 1;
+
+    while (i != nb && k != nb) {
+        if (i + chess[k] == k + chess[i])
+            return (0);
+        k += 1;
+        if (k == nb) {
+            i += 1;
+            k = i + 1;
         }
     }
     return (1);
@@ -37,10 +43,16 @@ static int left_to_right(int *chess, int nb)
 
 static int right_to_left(int *chess, int nb)
 {
-    for (int i = 0; i != nb; i++) {
-        for (int k = i + 1; k != nb; k++) {
-            if (i - chess[k] == k - chess[i])
-                return (0);
+    int i = 0;
+    int k = i + 1;
+
+    while (i != nb && k != nb) {
+        if (i - chess[k] == k - chess[i])
+            return (0);
+        k += 1;
+        if (k == nb) {
+            i += 1;
+            k = i + 1;
         }
     }
     return (1);
